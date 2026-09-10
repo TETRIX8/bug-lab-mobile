@@ -7,6 +7,7 @@ type Section = "bugs" | "lab" | "about";
 const nav = [
   ["/", "Главная"],
   ["/bugs", "Баги"],
+  ["/scenario", "Сценарий"],
   ["/lab", "Лаборатория"],
   ["/about", "О проекте"],
 ];

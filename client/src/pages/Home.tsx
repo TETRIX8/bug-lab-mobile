@@ -139,6 +139,7 @@ export default function Home() {
         <nav className="site-nav" aria-label="Основная навигация">
           <a className="nav-link active" href="/">Главная</a>
           <a className="nav-link" href="/bugs">Баги</a>
+          <a className="nav-link" href="/scenario">Сценарий</a>
           <a className="nav-link" href="/lab">Лаборатория</a>
           <a className="nav-link" href="/about">О проекте</a>
         </nav>
