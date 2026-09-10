@@ -58,7 +58,7 @@ function BugIcon({ name }: { name: string }) {
   return icons[name] ?? <CircleAlert size={18} />;
 }
 
-const BUGS: Bug[] = [
+export const BUGS: Bug[] = [
   { id: 1, tag: "TAP", title: "Кнопка-неуловимка", detail: "Убегает от пальца на 24 px.", joke: "Она просто не готова к ответственности.", icon: () => <BugIcon name="pointer" />, color: "coral" },
   { id: 2, tag: "VISUAL", title: "Призрачный текст", detail: "Заголовок исчезает при взгляде.", joke: "CSS тоже иногда хочет побыть интровертом.", icon: () => <BugIcon name="ghost" />, color: "lilac" },
   { id: 3, tag: "TIMING", title: "Ответ через эпоху", detail: "Кнопка думает ровно 1.5 сек.", joke: "Пожалуйста, не торопите её — она в потоке.", icon: () => <BugIcon name="timer" />, color: "mint" },
@@ -136,7 +136,13 @@ export default function Home() {
           <div className="brand-mark"><Zap size={16} fill="currentColor" /></div>
           <div><strong>BUG LAB</strong><span>mobile playground</span></div>
         </div>
-        <button className="icon-button" aria-label="Открыть меню" onClick={() => setToast("Меню убежало. Ищи его в следующем спринте.")}><Menu size={21} /></button>
+        <nav className="site-nav" aria-label="Основная навигация">
+          <a className="nav-link active" href="/">Главная</a>
+          <a className="nav-link" href="/bugs">Баги</a>
+          <a className="nav-link" href="/lab">Лаборатория</a>
+          <a className="nav-link" href="/about">О проекте</a>
+        </nav>
+        <button className="icon-button" aria-label="Открыть меню" onClick={() => setToast("Разделы открываются через навигацию выше.")}><Menu size={21} /></button>
       </header>
 
       <section className="hero container">
@@ -172,7 +178,7 @@ export default function Home() {
         <div className="runaway-card">
           <div><span className="mini-label">INTERACTION TEST</span><h2>Нажми, если сможешь</h2><p>Проверка реакции, терпения и мелкой моторики.</p></div>
           <div className="runaway-stage">
-            <button className="runaway-button" style={{ transform: `translate(${runaway.x}px, ${runaway.y}px)` }} onPointerEnter={() => setRunaway({ x: Math.round(Math.random() * 56 - 28), y: Math.round(Math.random() * 28 - 14) })} onClick={() => { markPassed(1); setToast("Невероятно. Ты поймал беглянку."); }}><MousePointer2 size={16} /> Поймать</button>
+            <button className="runaway-button" style={{ transform: `translate(${runaway.x}px, ${runaway.y}px)` }} onPointerEnter={(event) => { if (event.pointerType === "mouse") setRunaway({ x: Math.round(Math.random() * 56 - 28), y: Math.round(Math.random() * 28 - 14) }); }} onClick={() => { markPassed(1); setRunaway({ x: 0, y: 0 }); setToast("Невероятно. Ты поймал беглянку."); }}><MousePointer2 size={16} /> Поймать</button>
             <span className="runaway-caption">она нервничает ↗</span>
           </div>
         </div>
